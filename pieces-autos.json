@@ -5,7 +5,8 @@
         "prix": 60,
         "categorie": "Optiques",
         "image": "images/ampoule-led.png",
-        "disponibilité" : true
+        "description" : "c'est une ampoule, ça ne se vois pas tête de plouc ?",
+        "disponible" : true
     },
     {
         "id": 2,
@@ -13,15 +14,16 @@
         "prix": 40,
         "categorie": "Freinage",
         "image": "images/plaquettes-frein.png",
-        "disponibilité" : false
+        "disponible" : false
     },
     {
         "id": 3,
         "nom": "Ampoule boîte à gants",
         "prix": 5.49,
         "categorie": "Optiques",
-        "image": "images/ampoule-boite-a-gant.png",
-        "disponibilité" : true
+        "image": "images/ampoule-boite-a-gants.png",
+        "description" : "j'ai pas envi de te dire ce que c'est, demande a chat GPT",
+        "disponible" : true
     },
     {
         "id": 4,
@@ -29,13 +31,14 @@
         "prix": 9.60,
         "categorie": "Freinage",
         "image": "images/liquide-frein.png",
-        "disponibilité" : false
+        "disponible" : false
     },
     {
         "id": 5,
         "nom": "Balai d'essuie-glace",
         "prix": 29.10,
         "image": "images/balai-essuie-glace.png",
-        "disponibilité" : true
+        "description" : "C'est un balai d'essuie glace, tu veux te battre ?!",
+        "disponible" : true
     }
 ]
