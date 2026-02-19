@@ -1,21 +1,16 @@
 // VARIABLES
-
-// reprendre à vérifier les données
-
 // Récupération des pièces depuis le fichier JSON
 const reponse = await fetch("pieces-autos.json");
 const pieces = await reponse.json();
 
-// console.log(reponse);
-console.log(pieces);
-
 const article = pieces[0];
-console.log(article);
 
 const articles = pieces;
 
-const fiches = document.querySelector(".fiches");
-articles.forEach((article) => {
+for (let i = 0; i < articles.length; i++) {
+
+  const fiches = document.querySelector(".fiches");
+  let baliseArticle = document.createElement("article")
   let image = document.createElement("img");
   let nomPiece = document.createElement("h2");
   let prixArticle = document.createElement("p");
@@ -23,26 +18,33 @@ articles.forEach((article) => {
   let description = document.createElement("p");
   let disponible = document.createElement("p");
 
-  image.src = article.image;
-  nomPiece.innerText = article.nom;
+  image.src = articles[i].image;
+  nomPiece.innerText = articles[i].nom;
 
-  prixArticle.innerText = ` Prix : ${article.prix}€ (${
-    article.prix < 35 ? "€" : "€€€"
+  prixArticle.innerText = ` Prix : ${articles[i].prix}€ (${
+    articles[i].prix < 35 ? "€" : "€€€"
   }) `;
 
-  categorie.innerText = article.categorie ?? "(aucune catégorie)";
+  categorie.innerText = articles[i].categorie ?? "(aucune catégorie)";
 
-  description.innerText = `${article.description ?? "Pas de description pour le moment."
+  description.innerText = `${
+    articles[i].description ?? "Pas de description pour le moment."
   }`;
 
-  disponible.innerText = `${article.disponible ? "En stock": "Rupture de stock"}`
-  fiches.appendChild(image);
-  fiches.appendChild(nomPiece);
-  fiches.appendChild(prixArticle);
-  fiches.appendChild(categorie);
-  fiches.appendChild(description);
-  fiches.appendChild(disponible)
-});
+  disponible.innerText = `${
+    articles[i].disponible ? "En stock" : "Rupture de stock"
+  }`;
+
+  fiches.appendChild(baliseArticle)
+  baliseArticle.appendChild(image);
+  baliseArticle.appendChild(nomPiece);
+  baliseArticle.appendChild(prixArticle);
+  baliseArticle.appendChild(categorie);
+  baliseArticle.appendChild(description);
+  baliseArticle.appendChild(disponible);
+  console.log(fiches);
+}
+
 
 // FONCTIONS
 
