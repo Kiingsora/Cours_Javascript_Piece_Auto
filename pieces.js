@@ -90,7 +90,7 @@ btnSansDescription.addEventListener("click", function () {
 
 btnDescription.addEventListener("click", function () {
 
-  const pieceDescription = pieces.filter((piece) => "description");
+  const pieceDescription = pieces.filter((piece) => "description" in piece);
   console.log(pieceDescription);
 
   return pieceDescription;
