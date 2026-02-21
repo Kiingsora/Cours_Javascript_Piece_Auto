@@ -84,7 +84,6 @@ btnSansDescription.addEventListener("click", function () {
     (piece) => !("description" in piece)
   );
   console.log(pieceSansDescription);
-
   return pieceSansDescription;
 });
 
@@ -95,3 +94,21 @@ btnDescription.addEventListener("click", function () {
 
   return pieceDescription;
 });
+
+const nomArticles = pieces.map(piece => piece.nom)
+
+for (let i = pieces.length -1; i>=0 ;i--) {
+
+  if(pieces[i].prix > 35){
+    nomArticles.splice(i,1)
+  }  
+}
+
+const listeElementAbordable = document.createElement('ul');
+for (let i = 0; i < nomArticles.length; i++) {
+  const piece = document.createElement('li');
+  piece.innerText = nomArticles[i];
+  listeElementAbordable.appendChild(piece);
+}
+
+const listeDomAbordable = document.querySelector('.abordables').appendChild(listeElementAbordable);
