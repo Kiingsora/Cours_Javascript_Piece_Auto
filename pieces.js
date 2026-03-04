@@ -112,3 +112,10 @@ for (let i = 0; i < nomArticles.length; i++) {
 }
 
 const listeDomAbordable = document.querySelector('.abordables').appendChild(listeElementAbordable);
+
+const arrayTest = Array.from(pieces)
+
+let categorie = arrayTest.map( pice => pice.categorie);
+console.log(categorie)
+
+document.body.innerHTML = '<article> '+ categorie[2] +' </article>' + '<p>'+ categorie[1] +'</p>' + categorie[0] +'<span><span>'
