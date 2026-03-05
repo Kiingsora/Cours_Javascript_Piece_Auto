@@ -66,3 +66,8 @@ main {
 .fiches article h2 {
 	text-align: center;
 }
+
+.fiches article button{
+	height: 1rem;
+	width: 5rem;
+}

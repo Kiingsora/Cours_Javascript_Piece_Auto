@@ -1,4 +1,6 @@
+import { ajoutListenersAvis } from "./avis.js";
 // VARIABLES
+
 // Récupération des pièces depuis le fichier JSON
 const reponse = await fetch("pieces-autos.json");
 const pieces = await reponse.json();
@@ -24,6 +26,7 @@ function genererPiece(pieces) {
     let categorie = document.createElement("p");
     let description = document.createElement("p");
     let disponible = document.createElement("p");
+    let buttonAvis = document.createElement("button");
     
     image.src = pieces[i].image;
     nomPiece.innerText = pieces[i].nom;
@@ -49,6 +52,7 @@ function genererPiece(pieces) {
   baliseArticle.appendChild(categorie);
   baliseArticle.appendChild(description);
   baliseArticle.appendChild(disponible);
+  baliseArticle.appendChild(buttonAvis);
 }
 }
 
@@ -120,7 +124,6 @@ const listeDomAbordable = document.querySelector('.abordables').appendChild(list
 
 const arrayTest = Array.from(pieces)
 let categorie = arrayTest.map( pice => pice.categorie);
-console.log(categorie)
 
 // document.body.innerHTML = '<article> '+ categorie[2] +' </article>' + '<p>'+ categorie[1] +'</p>' + categorie[0] +'<span><span>'
 
@@ -133,3 +136,4 @@ inputPrixMax.addEventListener('input', function(){
     genererPiece(piecesFiltrees);  
 })
 
+ajoutListenersAvis();
