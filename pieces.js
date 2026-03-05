@@ -12,42 +12,47 @@ const btnDecroissant = document.querySelector(".btn-decroissant");
 const btnSansDescription = document.querySelector(".btn-sansDescription");
 const btnDescription = document.querySelector(".btn-description");
 
-for (let i = 0; i < articles.length; i++) {
-  const fiches = document.querySelector(".fiches");
-  let baliseArticle = document.createElement("article");
-  let image = document.createElement("img");
-  let nomPiece = document.createElement("h2");
-  let prixArticle = document.createElement("p");
-  let categorie = document.createElement("p");
-  let description = document.createElement("p");
-  let disponible = document.createElement("p");
 
-  image.src = articles[i].image;
-  nomPiece.innerText = articles[i].nom;
-
-  prixArticle.innerText = ` Prix : ${articles[i].prix}€ (${
-    articles[i].prix < 35 ? "€" : "€€€"
-  }) `;
-
-  categorie.innerText = articles[i].categorie ?? "(aucune catégorie)";
-
-  description.innerText = `${
-    articles[i].description ?? "Pas de description pour le moment."
-  }`;
-
-  disponible.innerText = `${
-    articles[i].disponible ? "En stock" : "Rupture de stock"
-  }`;
-
-  fiches.appendChild(baliseArticle);
-  baliseArticle.appendChild(image);
+function genererPiece(pieces) {
+  
+  for (let i = 0; i < pieces.length; i++) {
+    const fiches = document.querySelector(".fiches");
+    let baliseArticle = document.createElement("article");
+    let image = document.createElement("img");
+    let nomPiece = document.createElement("h2");
+    let prixArticle = document.createElement("p");
+    let categorie = document.createElement("p");
+    let description = document.createElement("p");
+    let disponible = document.createElement("p");
+    
+    image.src = pieces[i].image;
+    nomPiece.innerText = pieces[i].nom;
+    
+    prixArticle.innerText = ` Prix : ${pieces[i].prix}€ (${
+      pieces[i].prix < 35 ? "€" : "€€€"
+      }) `;
+      
+      categorie.innerText = pieces[i].categorie ?? "(aucune catégorie)";
+      
+      description.innerText = `${
+        pieces[i].description ?? "Pas de description pour le moment."
+        }`;
+        
+        disponible.innerText = `${
+          pieces[i].disponible ? "En stock" : "Rupture de stock"
+          }`;
+          
+          fiches.appendChild(baliseArticle);
+          baliseArticle.appendChild(image);
   baliseArticle.appendChild(nomPiece);
   baliseArticle.appendChild(prixArticle);
   baliseArticle.appendChild(categorie);
   baliseArticle.appendChild(description);
   baliseArticle.appendChild(disponible);
 }
+}
 
+genererPiece(articles);
 // FONCTIONS
 
 // EVENT
@@ -114,8 +119,17 @@ for (let i = 0; i < nomArticles.length; i++) {
 const listeDomAbordable = document.querySelector('.abordables').appendChild(listeElementAbordable);
 
 const arrayTest = Array.from(pieces)
-
 let categorie = arrayTest.map( pice => pice.categorie);
 console.log(categorie)
 
-document.body.innerHTML = '<article> '+ categorie[2] +' </article>' + '<p>'+ categorie[1] +'</p>' + categorie[0] +'<span><span>'
+// document.body.innerHTML = '<article> '+ categorie[2] +' </article>' + '<p>'+ categorie[1] +'</p>' + categorie[0] +'<span><span>'
+
+const inputPrixMax = document.querySelector('#prix-max')
+inputPrixMax.addEventListener('input', function(){
+    const piecesFiltrees = articles.filter(function(article){
+        return article.prix <= inputPrixMax.value;
+    });
+    document.querySelector(".fiches").innerHTML = "";
+    genererPiece(piecesFiltrees);  
+})
+
