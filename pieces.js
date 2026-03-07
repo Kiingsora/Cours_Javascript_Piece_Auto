@@ -14,9 +14,7 @@ const btnDecroissant = document.querySelector(".btn-decroissant");
 const btnSansDescription = document.querySelector(".btn-sansDescription");
 const btnDescription = document.querySelector(".btn-description");
 
-
 function genererPiece(pieces) {
-  
   for (let i = 0; i < pieces.length; i++) {
     const fiches = document.querySelector(".fiches");
     let baliseArticle = document.createElement("article");
@@ -26,34 +24,36 @@ function genererPiece(pieces) {
     let categorie = document.createElement("p");
     let description = document.createElement("p");
     let disponible = document.createElement("p");
-    let buttonAvis = document.createElement("button");
-    
+    let btnAvis = document.createElement("button");
+    btnAvis.innerText = "avis";
+    btnAvis.dataset.id = pieces[i].id;
+
     image.src = pieces[i].image;
     nomPiece.innerText = pieces[i].nom;
-    
+
     prixArticle.innerText = ` Prix : ${pieces[i].prix}€ (${
       pieces[i].prix < 35 ? "€" : "€€€"
-      }) `;
-      
-      categorie.innerText = pieces[i].categorie ?? "(aucune catégorie)";
-      
-      description.innerText = `${
-        pieces[i].description ?? "Pas de description pour le moment."
-        }`;
-        
-        disponible.innerText = `${
-          pieces[i].disponible ? "En stock" : "Rupture de stock"
-          }`;
-          
-          fiches.appendChild(baliseArticle);
-          baliseArticle.appendChild(image);
-  baliseArticle.appendChild(nomPiece);
-  baliseArticle.appendChild(prixArticle);
-  baliseArticle.appendChild(categorie);
-  baliseArticle.appendChild(description);
-  baliseArticle.appendChild(disponible);
-  baliseArticle.appendChild(buttonAvis);
-}
+    }) `;
+
+    categorie.innerText = pieces[i].categorie ?? "(aucune catégorie)";
+
+    description.innerText = `${
+      pieces[i].description ?? "Pas de description pour le moment."
+    }`;
+
+    disponible.innerText = `${
+      pieces[i].disponible ? "En stock" : "Rupture de stock"
+    }`;
+
+    fiches.appendChild(baliseArticle);
+    baliseArticle.appendChild(image);
+    baliseArticle.appendChild(nomPiece);
+    baliseArticle.appendChild(prixArticle);
+    baliseArticle.appendChild(categorie);
+    baliseArticle.appendChild(description);
+    baliseArticle.appendChild(disponible);
+    baliseArticle.appendChild(btnAvis);
+  }
 }
 
 genererPiece(articles);
@@ -97,43 +97,43 @@ btnSansDescription.addEventListener("click", function () {
 });
 
 btnDescription.addEventListener("click", function () {
-
   const pieceDescription = pieces.filter((piece) => "description" in piece);
   console.log(pieceDescription);
 
   return pieceDescription;
 });
 
-const nomArticles = pieces.map(piece => piece.nom)
+const nomArticles = pieces.map((piece) => piece.nom);
 
-for (let i = pieces.length -1; i>=0 ;i--) {
-
-  if(pieces[i].prix > 35){
-    nomArticles.splice(i,1)
-  }  
+for (let i = pieces.length - 1; i >= 0; i--) {
+  if (pieces[i].prix > 35) {
+    nomArticles.splice(i, 1);
+  }
 }
 
-const listeElementAbordable = document.createElement('ul');
+const listeElementAbordable = document.createElement("ul");
 for (let i = 0; i < nomArticles.length; i++) {
-  const piece = document.createElement('li');
+  const piece = document.createElement("li");
   piece.innerText = nomArticles[i];
   listeElementAbordable.appendChild(piece);
 }
 
-const listeDomAbordable = document.querySelector('.abordables').appendChild(listeElementAbordable);
+const listeDomAbordable = document
+  .querySelector(".abordables")
+  .appendChild(listeElementAbordable);
 
-const arrayTest = Array.from(pieces)
-let categorie = arrayTest.map( pice => pice.categorie);
+const arrayTest = Array.from(pieces);
+let categorie = arrayTest.map((pice) => pice.categorie);
 
 // document.body.innerHTML = '<article> '+ categorie[2] +' </article>' + '<p>'+ categorie[1] +'</p>' + categorie[0] +'<span><span>'
 
-const inputPrixMax = document.querySelector('#prix-max')
-inputPrixMax.addEventListener('input', function(){
-    const piecesFiltrees = articles.filter(function(article){
-        return article.prix <= inputPrixMax.value;
-    });
-    document.querySelector(".fiches").innerHTML = "";
-    genererPiece(piecesFiltrees);  
-})
+const inputPrixMax = document.querySelector("#prix-max");
+inputPrixMax.addEventListener("input", function () {
+  const piecesFiltrees = articles.filter(function (article) {
+    return article.prix <= inputPrixMax.value;
+  });
+  document.querySelector(".fiches").innerHTML = "";
+  genererPiece(piecesFiltrees);
+});
 
 ajoutListenersAvis();
