@@ -7,7 +7,9 @@ export function ajoutListenersAvis() {
         const id = event.target.dataset.id;   
         const reponse = await fetch(`http://localhost:8081/pieces/${id}/avis`);
         const avis = await reponse.json()
-        console.log(reponse);     
+        console.log(avis);    
+         
       });
     }
+    
   }
