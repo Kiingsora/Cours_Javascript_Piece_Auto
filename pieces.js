@@ -26,7 +26,6 @@ function genererPiece(pieces) {
     let disponible = document.createElement("p");
     let btnAvis = document.createElement("button");
     btnAvis.innerText = "avis";
-    btnAvis.dataset.id = pieces[i].id;
 
     image.src = pieces[i].image;
     nomPiece.innerText = pieces[i].nom;
