@@ -1,9 +1,10 @@
-import { ajoutListenersAvis } from "./avis.js";
+import { ajoutListenersAvis , ajoutListenerEnvoyerAvis } from "./avis.js";
 // VARIABLES
 
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch("pieces-autos.json");
+const reponse = await fetch("http://localhost:8081/pieces/");
 const pieces = await reponse.json();
+console.log(pieces);
 
 const article = pieces[0];
 const articles = pieces;
@@ -138,5 +139,8 @@ inputPrixMax.addEventListener("input", function () {
   genererPiece(piecesFiltrees);
 });
 
+
+
 ajoutListenersAvis();
+ajoutListenerEnvoyerAvis();
 console.log();

@@ -17,3 +17,17 @@ export function ajoutListenersAvis() {
       });
     }
   }
+
+  export function ajoutListenerEnvoyerAvis(){  
+    const formulaire = document.querySelector(".formulaire-avis");    
+    formulaire.addEventListener("submit", function (event){
+      event.preventDefault();
+
+      const avis = {
+        pieceId : parseInt(event.taarget.querySelector("[name=piece-id").value),
+        utilisateur : event.target.querySelector("[name =utilisateur]").valeur,
+        commentaire : event.target.querySelector("[name=commentaire]").valeur
+      }
+     
+    });
+  }
