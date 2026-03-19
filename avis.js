@@ -20,14 +20,24 @@ export function ajoutListenersAvis() {
 
   export function ajoutListenerEnvoyerAvis(){  
     const formulaire = document.querySelector(".formulaire-avis");    
+
     formulaire.addEventListener("submit", function (event){
       event.preventDefault();
 
       const avis = {
-        pieceId : parseInt(event.taarget.querySelector("[name=piece-id").value),
-        utilisateur : event.target.querySelector("[name =utilisateur]").valeur,
-        commentaire : event.target.querySelector("[name=commentaire]").valeur
+        pieceId: parseInt(event.target.querySelector("[name=piece-id").value),
+        utilisateur: event.target.querySelector("[name=utilisateur]").value,
+        commentaire: event.target.querySelector("[name=commentaire]").value,
       }
-     
+
+      const contenuJSON = JSON.stringify(avis);
+
+      fetch("http://localhost:8081/avis"), {
+        method:"POST",
+        headers:{"Content-Type" : "application/json"},
+        body: contenuJSON
+      }
     });
   }
+
+  // voir pourquoi le bouton n'envoi pas l'avis
